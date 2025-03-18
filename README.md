@@ -66,7 +66,7 @@ It is best to use concrete versions to avoid dependency issues.
 
 ### 4. Create `model_code/mlflow_model.py`
 
-This file contains the code for loading and using your PyTorch model. See [`mlflow_model.py`](./mlflow_model.py) for a full example.
+This file contains the code for loading and using your PyTorch model. See [`model_code/mlflow_model.py`](./model_code/mlflow_model.py) for a full example.
 
 * The `predict()` method is the only required method. It should invoke the PyTorch model with the `model_input` argument. Python type hints may be used to annotate the input arguments and return type of the method, which MLflow will later use to infer the input and output signatures of the model (see [docs](https://www.mlflow.org/docs/latest/model/python_model#type-hint-usage-in-pythonmodel)).
 * You may optionally define a `load_context()` method to load the model into a object instance variable, which can then be used in the `predict()` method. MLflow will call `load_context()` before calling `predict()`.
@@ -162,5 +162,5 @@ print(model.predict(sample_input))
 
 Debug `model_code/mlflow_model.py`, and `package.py` as needed. 
 
-A full example for testing the MLflow model prediction is in [predict.py](./predict.py). Note this example provides two methods of using the MLflow model, one for running the model in the current virtual environment, and one for the running the model in a separate, isolated virtual environment. In the latter case, MLflow will create a temporary virtual environment, install all the required dependencies, and invoke the model by passing it a file containing a seralized version of the input data.
+A full example for testing the MLflow model prediction is in [predict.py](./predict.py). Note this example provides two methods of using the MLflow model, one for running the model in the current virtual environment, and one for the running the model in a separate, isolated virtual environment. In the latter case, MLflow will create a temporary virtual environment, install all the required dependencies, and invoke the model by passing it a file containing a serialized version of the input data.
 
